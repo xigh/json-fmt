@@ -7,17 +7,18 @@ import (
 )
 
 func main() {
-	dec := json.NewDecoder(os.Stdin)
 	var data interface{}
+
+	dec := json.NewDecoder(os.Stdin)
 	err := dec.Decode(&data)
 	if err != nil {
-		log.Fatalf("json.Decode failed")
+		log.Fatalf("json.Decode failed: %v", err)
 	}
 
 	enc := json.NewEncoder(os.Stdout)
 	enc.SetIndent("", "    ")
 	err = enc.Encode(data)
 	if err != nil {
-		log.Fatalf("json.Encode failed")
+		log.Fatalf("json.Encode failed: %v", err)
 	}
 }
